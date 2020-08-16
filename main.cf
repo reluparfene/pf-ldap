@@ -694,7 +694,7 @@ transport_server_host = $ldap_server_host
 transport_search_base = $ldap_search_base
 transport_query_filter = (dc=%s)
 transport_result_attribute = description
-transport_cache = yes
+transport_cache = no
 transport_bind = no
 transport_scope = one
 transport_bind_dn = $ldap_bind_dn
