@@ -689,22 +689,20 @@ ldap_server_host = 127.0.0.1
 #ldap_server_port = 389
 ldap_version = 3
 
-# transports
-transport_server_host = $ldap_server_host
-transport_search_base = $ldap_search_base
-transport_query_filter = (dc=%s)
-transport_result_attribute = description
-transport_cache = no
-transport_bind = no
-transport_scope = one
-transport_bind_dn = $ldap_bind_dn
-transport_bind_pw = $ldap_bind_pw
-transport_version = $ldap_version
+# virtual domains
+vd_server_host = $ldap_server_host
+vd_search_base = $ldap_search_base
+vd_query_filter = (dc=%s)
+vd_result_attribute = description
+vd_cache = no
+vd_bind = no
+vd_scope = one
+vd_bind_dn = $ldap_bind_dn
+vd_bind_pw = $ldap_bind_pw
+vd_version = $ldap_version
 
-#relay_domains = hash:/etc/postfix/relay_domains
-relay_domains = ldap:transport
-#transport_maps = hash:/etc/postfix/transport, $relay_domains
-transport_maps = hash:/etc/postfix/transport, ldap:transport
+relay_domains = ldap:vd, hash:/etc/postfix/relay_domains
+relay_transport = lmtp:[127.0.0.1], hash:/etc/postfix/relay_domains
 
 address_verify_map = btree:$data_directory/verify_cache
 address_verify_negative_expire_time = 3d
